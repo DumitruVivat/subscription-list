@@ -1,24 +1,32 @@
 package dumitru.examples.repository;
-
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
-
-import dumitru.examples.domain.Subscriber;
-import dumitru.examples.mapper.SubscriberRowMapper;
+import dumitru.examples.domain.mapper.SubscriberRowMapper;
+import dumitru.examples.domain.subscriber.Subscriber;
 
 @Repository
 public class SubscriberRepo {
 	
-	@Autowired             // SB - > Automatically resolve DI
+	@Autowired   
 	JdbcTemplate jdbc;
 	
 	public List<Subscriber> getSubscribers() {
-		
 		return jdbc.query("SELECT * FROM public.subscribers;", new SubscriberRowMapper());
 	}
-	
+    public List<String> getSubscribersEmailsById(List<Integer> ids) {
+    	String id_values = "";
+    	for (Integer id : ids) {
+			id_values += id + ",";
+		}
+    	id_values = id_values.substring(0,id_values.length()-1);
+    	System.out.println(id_values);
+		return jdbc.queryForList(
+				"SELECT email FROM public.subscribers WHERE id IN ( "+id_values+" );"
+				,String.class
+		);
+	}
 	public void save(Subscriber subscriber) {
 		jdbc.update("INSERT INTO public.subscribers(\n"
 				+ "name, email)\n"

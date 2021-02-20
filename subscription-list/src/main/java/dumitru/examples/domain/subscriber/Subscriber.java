@@ -1,4 +1,4 @@
-package dumitru.examples.domain;
+package dumitru.examples.domain.subscriber;
 
 public class Subscriber {
 	
@@ -45,7 +45,7 @@ public class Subscriber {
 
 	@Override
 	public String toString() {
-		return "Subscriber [id=" + id + ", name=" + name + ", email=" + email + "]";
+		return "Subscriber [nid=" + id + ", name=" + name + ", email=" + email + "]";
 	}
 	
 	

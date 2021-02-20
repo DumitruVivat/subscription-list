@@ -1,4 +1,4 @@
-package dumitru.examples.controller;
+package dumitru.examples.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import dumitru.examples.domain.Subscriber;
+import dumitru.examples.domain.subscriber.Subscriber;
 import dumitru.examples.repository.SubscriberRepo;
 
 import java.util.*;

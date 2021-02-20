@@ -1,11 +1,11 @@
-package dumitru.examples.mapper;
+package dumitru.examples.domain.mapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import org.springframework.jdbc.core.RowMapper;
 
-import dumitru.examples.domain.Subscriber;
+import dumitru.examples.domain.subscriber.Subscriber;
 
 public class SubscriberRowMapper implements RowMapper<Subscriber>{
 
