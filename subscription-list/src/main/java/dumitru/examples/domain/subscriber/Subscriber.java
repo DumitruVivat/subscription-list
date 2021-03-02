@@ -45,7 +45,7 @@ public class Subscriber {
 
 	@Override
 	public String toString() {
-		return "Subscriber [nid=" + id + ", name=" + name + ", email=" + email + "]";
+		return "Subscriber [id=" + id + ", name=" + name + ", email=" + email + "]";
 	}
 	
 	

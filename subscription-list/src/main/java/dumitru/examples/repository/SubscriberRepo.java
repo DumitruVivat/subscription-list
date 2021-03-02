@@ -3,6 +3,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+
 import dumitru.examples.domain.mapper.SubscriberRowMapper;
 import dumitru.examples.domain.subscriber.Subscriber;
 
@@ -10,14 +11,19 @@ import dumitru.examples.domain.subscriber.Subscriber;
 public class SubscriberRepo {
 	
 	@Autowired   
-	JdbcTemplate jdbc;
+	private JdbcTemplate jdbc;
 	
 	public List<Subscriber> getSubscribers() {
 		return jdbc.query("SELECT * FROM public.subscribers;", new SubscriberRowMapper());
 	}
+	public Subscriber getSubscriberById(int id) {
+		
+		   return jdbc.queryForObject("SELECT * FROM public.subscribers\n"
+					+ "WHERE id="+id+";",new SubscriberRowMapper());
+	}
     public List<String> getSubscribersEmailsById(List<Integer> ids) {
     	String id_values = "";
-    	for (Integer id : ids) {
+    	for(Integer id : ids) {
 			id_values += id + ",";
 		}
     	id_values = id_values.substring(0,id_values.length()-1);
@@ -40,7 +46,7 @@ public class SubscriberRepo {
 	public void updateEmail(int id,String newEmail) {
 		jdbc.update("UPDATE public.subscribers\n"
 				+ "	SET email= '"+newEmail+"'\n"
-				+ "	WHERE id='"+id+"'");
+				+ "	WHERE id='"+id+"';");
 	}
 	public void removeById(int id) {
 		jdbc.update("DELETE FROM public.subscribers\n"

@@ -35,5 +35,6 @@ public class Message {
 		return "Message [id=" + id + ", content=" + content + "]";
 	}
 
-	
 }
+
+
